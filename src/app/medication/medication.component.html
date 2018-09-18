@@ -1,0 +1,335 @@
+<div class="container">
+  <div id="exTab2">
+    <ul class="nav nav-tabs justify-content-center">
+      <li class="active nav-item">
+        <a href="#1" data-toggle="tab">CURRENT MED</a>
+      </li>
+      <li class="nav-item"><a href="#2" data-toggle="tab">REFILL REQ ({{refillMedi.length}})</a>
+      </li>
+      <li class="nav-item"><a href="#3" data-toggle="tab">PAST MED</a>
+      </li>
+    </ul>
+    <div class="tab-content">
+
+      <!-- Tab 1 -->
+      <div class="tab-pane active" [ngSwitch]="view" id="1">
+        <!-- 1st view -->
+        <i class="fa fa-list" (click)="changeView(view)" aria-hidden="true" style="font-size:30px;float: right;margin-right: 100px"></i>
+        <div class="container" *ngSwitchCase="0">
+          <div class="row">
+            <h2>Stored In Device</h2>
+          </div>
+          <div class="col-lg-9">
+            <div class="col-lg-6">
+              <div class="panel panel-default col-lg-12 big-box ">
+                <div class="panel-body" (click)="getDetails(boxes[0],0)">
+                  <h6 *ngIf="boxes[0]?.mesg=='past'" class="message">
+                    <i class="fa fa-times" style="font-size:20px"></i>{{boxes[0]?.mesg}}
+                  </h6>
+                  <h5 class="card-title text-center">{{boxes[0]?.slot}}</h5>
+                  <img class="card-img-top" style="width:50px" onerror="this.src='assets/images/pills/ellipse_blue.png'"
+                    [src]="boxes[0]?.status ? boxes[0].image : 'assets/images/plus.png'" alt="Card image cap">
+                </div>
+              </div>
+
+              <div class="panel panel-default col-lg-12 big-box">
+                <div class="panel-body" (click)="getDetails(boxes[1],1)">
+                  <h6 *ngIf="boxes[1]?.mesg=='past'" class="message">
+                    <i class="fa fa-times" style="font-size:20px"></i>{{boxes[1]?.mesg}}
+                  </h6>
+                  <h5 class="card-title text-center">{{boxes[1]?.slot}}</h5>
+                  <img class="card-img-top" style="width:50px" onerror="this.src='assets/images/pills/ellipse_blue.png'"
+                    [src]="boxes[1]?.status ? boxes[1].image : 'assets/images/plus.png'" alt="Card image cap">
+                </div>
+              </div>
+
+              <div class="panel panel-default col-lg-12 big-box ">
+                <div class="panel-body" (click)="getDetails(boxes[2],2)">
+                  <h6 *ngIf="boxes[2]?.mesg=='past'" class="message">
+                    <i class="fa fa-times" style="font-size:20px"></i>{{boxes[2]?.mesg}}
+                  </h6>
+                  <h5 class="card-title text-center">{{boxes[2]?.slot}}</h5>
+                  <img class="card-img-top" style="width:50px" onerror="this.src='assets/images/pills/ellipse_blue.png'"
+                    [src]="boxes[2]?.status ? boxes[2].image : 'assets/images/plus.png'" alt="Card image cap">
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-6">
+              <div class="panel panel-default col-lg-12 big-box ">
+                <div class="panel-body" (click)="getDetails(boxes[3],3)">
+                  <h6 *ngIf="boxes[3]?.mesg=='past'" class="message">
+                    <i class="fa fa-times" style="font-size:20px"></i>{{boxes[3]?.mesg}}
+                  </h6>
+                  <h5 class="card-title text-center">{{boxes[3]?.slot}}</h5>
+                  <img class="card-img-top" style="width:50px" onerror="this.src='assets/images/pills/ellipse_blue.png'"
+                    [src]="boxes[3]?.status ? boxes[3].image : 'assets/images/plus.png'" alt="Card image cap">
+                </div>
+              </div>
+
+              <div class="panel panel-default col-lg-12 big-box ">
+                <div class="panel-body" (click)="getDetails(boxes[4],4)">
+                  <h6 *ngIf="boxes[4]?.mesg=='past'" class="message">
+                    <i class="fa fa-times" style="font-size:20px"></i>{{boxes[4]?.mesg}}
+                  </h6>
+                  <h5 class="card-title text-center">{{boxes[4]?.slot}}</h5>
+                  <img class="card-img-top" style="width:50px" onerror="this.src='assets/images/pills/ellipse_blue.png'"
+                    [src]="boxes[4]?.status ? boxes[4].image : 'assets/images/plus.png'" alt="Card image cap">
+
+                </div>
+              </div>
+              <div class="panel panel-default col-lg-12 big-box">
+                <div class="panel-body" (click)="getDetails(boxes[5],5)">
+                  <h6 *ngIf="boxes[5]?.mesg=='past'" class="message">
+                    <i class="fa fa-times" style="font-size:20px"></i>{{boxes[5]?.mesg}}
+                  </h6>
+                  <h5 class="card-title text-center">{{boxes[5]?.slot}}</h5>
+                  <img class="card-img-top" style="width:50px" onerror="this.src='assets/images/pills/ellipse_blue.png'"
+                    [src]="boxes[5]?.status ? boxes[5].image : 'assets/images/plus.png'" alt="Card image cap">
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3">
+            <div class="panel panel-default col-lg-12 small-box">
+              <div class="panel-body" (click)="getDetails(boxes[6],6)">
+                <h6 *ngIf="boxes[6]?.mesg=='past'" class="message">
+                  <i class="fa fa-times" style="font-size:20px"></i>{{boxes[6]?.mesg}}
+                </h6>
+                <h5 class="card-title text-center">{{boxes[6]?.slot}}</h5>
+                <img class="card-img-top" style="width:50px" onerror="this.src='assets/images/pills/ellipse_blue.png'"
+                  [src]="boxes[6]?.status ? boxes[6].image : 'assets/images/plus.png'" alt="Card image cap">
+
+              </div>
+            </div>
+            <div class="panel panel-default col-lg-12 small-box">
+              <div class="panel-body" (click)="getDetails(boxes[7],7)">
+                <h6 *ngIf="boxes[7]?.mesg=='past'" class="message">
+                  <i class="fa fa-times" style="font-size:20px"></i>{{boxes[7]?.mesg}}
+                </h6>
+                <h5 class="card-title text-center">{{boxes[7]?.slot}}</h5>
+                <img class="card-img-top" style="width:50px" onerror="this.src='assets/images/pills/ellipse_blue.png'"
+                  [src]="boxes[7]?.status ? boxes[7].image : 'assets/images/plus.png'" alt="Card image cap">
+
+              </div>
+            </div>
+            <div class="panel panel-default col-lg-12 small-box">
+              <div class="panel-body" (click)="getDetails(boxes[8],8)">
+                <h6 *ngIf="boxes[8]?.mesg=='past'" class="message">
+                  <i class="fa fa-times" style="font-size:20px"></i>{{boxes[8]?.mesg}}
+                </h6>
+                <h5 class="card-title text-center">{{boxes[8]?.slot}}</h5>
+                <img class="card-img-top" style="width:50px" onerror="this.src='assets/images/pills/ellipse_blue.png'"
+                  [src]="boxes[8]?.status ? boxes[8].image : 'assets/images/plus.png'" alt="Card image cap">
+
+              </div>
+            </div>
+            <div class="panel panel-default col-lg-12 small-box">
+              <div class="panel-body" (click)="getDetails(boxes[9],9)">
+                <h6 *ngIf="boxes[9]?.mesg=='past'" class="message">
+                  <i class="fa fa-times" style="font-size:20px"></i>{{boxes[9]?.mesg}}
+                </h6>
+                <h5 class="card-title text-center">{{boxes[9]?.slot}}</h5>
+                <img class="card-img-top" style="width:50px" onerror="this.src='assets/images/pills/ellipse_blue.png'"
+                  [src]="boxes[9]?.status ? boxes[9].image : 'assets/images/plus.png'" alt="Card image cap">
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- 2nd view -->
+        <div class="row" *ngSwitchCase="1">
+          <div class="row">
+            <h2>Stored In Device</h2>
+          </div>
+          <div class="panel panel-default col-lg-12 big-box-list" *ngFor="let box of boxesList" (click)="getDetails(box,0)">
+            <div class="panel-body">
+              <div class="col-lg-3">
+                <img class="card-img-top" style="width:70px" onerror="this.src='assets/images/pills/ellipse_blue.png'"
+                  [src]="box.image" alt="Card image cap">
+              </div>
+              <div class="col-lg-8 ">
+                <h5>{{box.name}} <i *ngIf="box.critical" class="fa fa-exclamation-circle" aria-hidden="true" style="color:#f27022"></i>
+                </h5>
+                <h6>Location: {{box.slot}}</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="container">
+          <h2>Stored Outside Device</h2>
+          <div class="col-lg-12" *ngFor="let outside of outsidemed" (click)="getDetails(outside)" style="margin-bottom: 18px;">
+            <div *ngIf="isString(outside.location)">
+              <div class="col-lg-3">
+                <img class="card-img-top" src="{{outside.image}}" alt="" style="width:70px">
+              </div>
+              <div class="col-lg-8 ">
+                <h5>{{outside.name}}</h5>
+                <h6>{{outside.location}}</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Tab 2 -->
+
+      <div class="tab-pane" id="2">
+
+        <div class="container">
+          <!-- <h2>Stored Outside Device</h2> -->
+          <p *ngIf="refillMedi.length==0">No Medicines for Refill</p>
+
+          <div class="col-lg-12" *ngFor="let refill of refillMedi" style="margin-bottom: 18px;" (click)="getDetails(refill)">
+            <div class="col-lg-3">
+              <img class="card-img-top" src="{{refill.image}}" alt="" style="width:70px">
+            </div>
+            <div class="col-lg-8 ">
+              <h4>{{refill.name}}</h4>
+              <h6>Location:- {{slots[refill.location?.slot-1]}}</h6>
+              <h6>Quantity:- {{refill.stock}} {{refill.type}}</h6>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 3 -->
+      <div class="tab-pane" id="3">
+        <div class="container">
+          <h2>Stored In Device</h2>
+          <div class="col-lg-9">
+            <div class="col-lg-6">
+
+              <div class="panel panel-default col-lg-12 big-box " [ngClass]="{'disabled': boxes[0]?.mesg!=='past'}">
+                <div class="panel-body" *ngIf="boxes[0]?.mesg=='past'" (click)="getDetails(boxes[0])">
+                  <h6 *ngIf="boxes[0]?.mesg=='past'" class="message">
+                    <i class="fa fa-times" style="font-size:20px"></i>{{boxes[0].mesg}}
+                  </h6>
+                  <h5 class="card-title text-center">{{boxes[0].slot}}</h5>
+                  <img class="card-img-top" style="width:50px" onerror="this.src='assets/images/pills/ellipse_blue.png'"
+                    [src]="boxes[0]?.status ? boxes[0].image : 'assets/images/plus.png'" alt="Card image cap">
+                </div>
+              </div>
+
+              <div class="panel panel-default col-lg-12 big-box" [ngClass]="{'disabled': boxes[1]?.mesg!=='past'}">
+                <div class="panel-body" *ngIf="boxes[1]?.mesg=='past'" (click)="getDetails(boxes[1])">
+                  <h6 class="message">
+                    <i class="fa fa-times" style="font-size:20px"></i>{{boxes[1].mesg}}
+                  </h6>
+                  <h5 class="card-title text-center">{{boxes[1].slot}}</h5>
+                  <img class="card-img-top" style="width:50px" onerror="this.src='assets/images/pills/ellipse_blue.png'"
+                    [src]="boxes[1]?.status ? boxes[1].image : 'assets/images/plus.png'" alt="Card image cap">
+                </div>
+              </div>
+
+              <div class="panel panel-default col-lg-12 big-box " [ngClass]="{'disabled': boxes[2]?.mesg!=='past'}">
+                <div class="panel-body" *ngIf="boxes[2]?.mesg=='past'" (click)="getDetails(boxes[2])">
+                  <h6 class="message">
+                    <i class="fa fa-times" style="font-size:20px"></i>{{boxes[2].mesg}}
+                  </h6>
+                  <h5 class="card-title text-center">{{boxes[2].slot}}</h5>
+                  <img class="card-img-top" style="width:50px" onerror="this.src='assets/images/pills/ellipse_blue.png'"
+                    [src]="boxes[2]?.status ? boxes[2].image : 'assets/images/plus.png'" alt="Card image cap">
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-6">
+
+              <div class="panel panel-default col-lg-12 big-box " [ngClass]="{'disabled': boxes[3]?.mesg!=='past'}">
+                <div class="panel-body" *ngIf="boxes[3]?.mesg=='past'" (click)="getDetails(boxes[3])">
+                  <h6 class="message">
+                    <i class="fa fa-times" style="font-size:20px"></i>{{boxes[3].mesg}}
+                  </h6>
+                  <h5 class="card-title text-center">{{boxes[3].slot}}</h5>
+                  <img class="card-img-top" style="width:50px" onerror="this.src='assets/images/pills/ellipse_blue.png'"
+                    [src]="boxes[3]?.status ? boxes[3].image : 'assets/images/plus.png'" alt="Card image cap">
+                </div>
+              </div>
+
+              <div class="panel panel-default col-lg-12 big-box " [ngClass]="{'disabled': boxes[4]?.mesg!=='past'}">
+                <div class="panel-body" *ngIf="boxes[4]?.mesg=='past'" (click)="getDetails(boxes[4])">
+                  <h6 class="message">
+                    <i class="fa fa-times" style="font-size:20px"></i>{{boxes[4].mesg}}
+                  </h6>
+                  <h5 class="card-title text-center">{{boxes[4].slot}}</h5>
+                  <img class="card-img-top" style="width:50px" onerror="this.src='assets/images/pills/ellipse_blue.png'"
+                    [src]="boxes[4]?.status ? boxes[4].image : 'assets/images/plus.png'" alt="Card image cap">
+                </div>
+              </div>
+
+              <div class="panel panel-default col-lg-12 big-box" [ngClass]="{'disabled': boxes[5]?.mesg!=='past'}">
+                <div class="panel-body" *ngIf="boxes[5]?.mesg=='past'" (click)="getDetails(boxes[5])">
+                  <div>
+                    <h6 class="message">
+                      <i class="fa fa-times" style="font-size:20px"></i>{{boxes[5].mesg}}
+                    </h6>
+                    <h5 class="card-title text-center">{{boxes[5].slot}}</h5>
+                    <img class="card-img-top" style="width:50px" onerror="this.src='assets/images/pills/ellipse_blue.png'"
+                      [src]="boxes[5]?.status ? boxes[5].image : 'assets/images/plus.png'" alt="Card image cap">
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="col-lg-3">
+
+            <div class="panel panel-default col-lg-12 small-box" [ngClass]="{'disabled': boxes[6]?.mesg!=='past'}">
+              <div class="panel-body" *ngIf="boxes[6]?.mesg=='past'" (click)="getDetails(boxes[6])">
+                <h6 class="message">
+                  <i class="fa fa-times" style="font-size:20px"></i>{{boxes[6].mesg}}
+                </h6>
+                <h5 class="card-title text-center">{{boxes[6].slot}}</h5>
+                <img class="card-img-top" style="width:50px" onerror="this.src='assets/images/pills/ellipse_blue.png'"
+                  [src]="boxes[6]?.status ? boxes[6].image : 'assets/images/plus.png'" alt="Card image cap">
+              </div>
+            </div>
+
+            <div class="panel panel-default col-lg-12 small-box" [ngClass]="{'disabled': boxes[7]?.mesg!=='past'}">
+              <div class="panel-body" *ngIf="boxes[7]?.mesg=='past'" (click)="getDetails(boxes[7])">
+                <h6 class="message">
+                  <i class="fa fa-times" style="font-size:20px"></i>{{boxes[7].mesg}}
+                </h6>
+                <h5 class="card-title text-center">{{boxes[7].slot}}</h5>
+                <img class="card-img-top" style="width:50px" onerror="this.src='assets/images/pills/ellipse_blue.png'"
+                  [src]="boxes[7]?.status ? boxes[7].image : 'assets/images/plus.png'" alt="Card image cap">
+              </div>
+            </div>
+
+            <div class="panel panel-default col-lg-12 small-box" [ngClass]="{'disabled': boxes[8]?.mesg!=='past'}">
+              <div class="panel-body" *ngIf="boxes[8]?.mesg=='past'" (click)="getDetails(boxes[8])">
+                <h6 class="message">
+                  <i class="fa fa-times" style="font-size:20px"></i>{{boxes[8].mesg}}
+                </h6>
+                <h5 class="card-title text-center">{{boxes[8].slot}}</h5>
+                <img class="card-img-top" style="width:50px" onerror="this.src='assets/images/pills/ellipse_blue.png'"
+                  [src]="boxes[8]?.status ? boxes[8].image : 'assets/images/plus.png'" alt="Card image cap">
+              </div>
+            </div>
+
+            <div class="panel panel-default col-lg-12 small-box" [ngClass]="{'disabled': boxes[9]?.mesg!=='past'}">
+              <div class="panel-body" *ngIf="boxes[9]?.mesg=='past'" (click)="getDetails(boxes[9])">
+                <h6 class="message">
+                  <i class="fa fa-times" style="font-size:20px"></i>{{boxes[9].mesg}}
+                </h6>
+                <h5 class="card-title text-center">{{boxes[9].slot}}</h5>
+                <img class="card-img-top" style="width:50px" onerror="this.src='assets/images/pills/ellipse_blue.png'"
+                  [src]="boxes[9]?.status ? boxes[9].image : 'assets/images/plus.png'" alt="Card image cap">
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="container">
+          <h4>No Medicines added</h4>
+        </div>
+      </div>
+    </div>

@@ -1,0 +1,115 @@
+<div class="container">
+  <div class="row">
+     <a class="list-group-item" [routerLink]="['/addMedicine']" style="float:right">
+      <i class="fa fa-pencil fa-fw" aria-hidden="true"></i>&nbsp; Edit
+    </a>
+  </div>
+  <div class="row" style="margin-bottom:45px">
+    <div class="col-lg-3" style="float:left">
+      <img src="{{medicineDetails.image}}" alt="" style="width:80px">
+    </div>
+    <div class="col-lg-3">
+      <h2>{{medicineDetails.name}}</h2>
+      <p>Start Date: {{medicineDetails.start | date:'dd-MMM-yyyy'}}</p>
+      <p color="cust-text-secondary">
+        Location: {{slots[medicineDetails.location?.slot-1]}}
+      </p>
+    </div>
+    <div class="col-lg-12" style="color:#65BB68;margin-left: 16px">
+      {{ enStatus === "true" ? "Active" : "Inactive"}}
+      <ui-switch style="margin-left:86% " [(ngModel)]="enable" (ngModelChange)="updateState('status',$event)"></ui-switch>
+    </div>
+  </div>
+
+
+  <div class="container">
+    <div id="exTab2">
+      <ul class="nav nav-tabs justify-content-center">
+        <li class="active nav-item">
+          <a href="#1" data-toggle="tab">Schedule</a>
+        </li>
+        <li class="nav-item"><a href="#2" data-toggle="tab">About</a>
+        </li>
+      </ul>
+
+      <div class="tab-content container">
+        <!-- Tab 1 -->
+        <div class="tab-pane active" id="1">
+          <div class="container">
+            <div class="row" style="margin-top: 30px">
+              <h4> Eating Instruction</h4>
+              <!-- <p *ngIf="!medicineDetails.eatingInstructions?.otherEatingInstructions">No food Instruction</p> -->
+              <p>{{foodInst[medicineDetails.eatingInstructions?.instructions]}}</p>
+              {{medicineDetails.eatingInstructions?.otherEatingInstructions}}
+            </div>
+            <div class="row" style="margin-top: 30px">
+              <h4>{{medicineDetails.repeat?.days[0]?.message}}</h4>
+              <p *ngFor="let dose of medicineDetails.repeat?.days[0]?.doses">{{dose.time | date:'shortTime'}} Take {{dose.quantity}}
+                {{medicineDetails.type}} </p>
+            </div>
+
+            <div class="row" style="margin-top: 30px">
+              <div class="col-lg-6">
+                <h4>Critical medicine</h4>
+              </div>
+              <div class="col-lg-6">
+                <ui-switch style="margin-left:75% " [(ngModel)]="medicineDetails.critical" (ngModelChange)="updateState('critical',$event)"></ui-switch>
+              </div>
+            </div>
+
+            <div class="row" style="margin-top: 30px">
+              <h4>Quantity</h4>
+              <div class="col-lg-6">
+                <label>{{medicineDetails.stock}} {{medicineDetails.type}}</label>
+              </div>
+              <div class="col-lg-6" style="left: 33%" >
+                <i class="fa fa-plus text-center"  style="font-size:18px" data-toggle="modal" data-target="#myModal"></i>
+                <div class="modal fade" id="myModal" role="dialog">
+                  <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content" style="margin-top:45%">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Quantity</h4>
+                      </div>
+                      <!-- Modal Body-->
+                      <div class="modal-body">
+                        <!-- <p>Some text in the modal.</p> -->
+                        <input type="number"  [(ngModel)]="quantity" class=""/>
+                      </div>
+                      
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" [disabled]="enable" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-success" data-dismiss="modal" (click)="refillmedicine(medicineDetails._id)">Refill</button>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row" style="margin-top: 30px">
+              <h4>Notes</h4>
+              <label>{{medicineDetails.notes}}</label>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Tab 2 -->
+        <div class="tab-pane" id="2">
+          <div class="container">
+            <h2>Stored Outside Devicesssssssssss</h2>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+  <div class="row">
+    <button class="btn btn-primary" (click)="deleteMedicine()" style="width:100%">Delete</button>
+  </div>
+</div>

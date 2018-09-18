@@ -1,0 +1,123 @@
+<div class="container">
+
+  <form [formGroup]='signUp'>
+    <div class="input-group">
+      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+      <input id="name" type="text" class="form-control" formControlName="firstName" placeholder="Your Name" />
+    </div>
+    <div *ngIf="signUp.controls.firstName.invalid && (signUp.controls.firstName.dirty || signUp.controls.firstName.touched)"
+      class="invalid-feedback">
+      <div *ngIf="signUp.controls.firstName.errors.required" class="alert alert-danger">
+        Name is required.
+      </div>
+    </div>
+    <br>
+
+    <div class="input-group">
+      <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+      <input id="email" type="email" class="form-control" formControlName="email" placeholder="Enter email">
+    </div>
+    <div *ngIf="signUp.controls.email.invalid && (signUp.controls.email.dirty || signUp.controls.email.touched)" class="invalid-feedback">
+      <div *ngIf="signUp.controls.email.errors.required" class="alert alert-danger">Email is required</div>
+      <div *ngIf="signUp.controls.email.errors.email" class="alert alert-warning">Email must be a valid email address</div>
+    </div>
+
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" formControlName="emailAvai" (ngModelChange)="emailNothave()" />I don't have an email
+        address</label>
+    </div>
+    <br>
+
+    <div class="input-group">
+      <span class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></span>
+      <input formControlName="country" [typeahead]="countries" typeaheadOptionField="countryName" class="form-control"
+        placeholder="Choose a category" typeaheadOptionsLimit="7" (typeaheadOnSelect)="tap($event)">
+    </div>
+
+    <div *ngIf="signUp.controls.country.invalid && (signUp.controls.country.dirty || signUp.controls.country.touched)"
+      class="invalid-feedback">
+      <div *ngIf="signUp.controls.country.errors.required" class="alert alert-danger">
+        Country is required
+      </div>
+    </div>
+    <br>
+
+    <div class="input-group">
+      <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
+      <input id="mobileNumber" type="text" maxlength="10" class="form-control" formControlName="mobileNumber"
+        placeholder="Enter Mobile" class="form-control" (keypress)="isNumber($event)" />
+    </div>
+
+    <div *ngIf="signUp.controls.mobileNumber.invalid && (signUp.controls.mobileNumber.dirty || signUp.controls.mobileNumber.touched)"
+      class="invalid-feedback">
+      <div *ngIf="signUp.controls.mobileNumber.errors.required" class="alert alert-danger">
+        Mobile is required
+      </div>
+      <div *ngIf="signUp.controls.mobileNumber.errors.minlength || signUp.controls.mobileNumber.errors.maxlength" class="alert alert-warning">
+        Mobile should not be less than 8 digits & greater than 10 digits.
+      </div>
+    </div>
+    <br>
+
+    <div class="input-group">
+      <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+      <input id="password" [type]="type" class="form-control" formControlName="password" placeholder="Password" />
+      <span class="input-group-addon" (click)="readPassword(type)">
+        <i [class]="eye" aria-hidden="true"></i>
+      </span>
+    </div>
+    <div *ngIf="signUp.controls.password.invalid && (signUp.controls.password.dirty || signUp.controls.password.touched)"
+      class="invalid-feedback">
+      <div *ngIf="signUp.controls.password.errors.required" class="alert alert-danger">
+        Password is required
+      </div>
+      <div *ngIf="signUp.controls.password.errors.pattern || signUp.controls.password.errors.minlength" class="alert alert-warning">Password
+        must
+        be minimum eight characters, at least one
+        capital letter, one number and one special character </div>
+    </div>
+    <br>
+
+    <div>
+      <button (click)="onSubmit()">Submit</button>
+      <!-- <button [disabled]="signUp.pristine || signUp.invalid" (click)="onSubmit()" class="btn btn-success">Submit</button> -->
+    </div>
+  </form>
+
+  <button (click)="launch_toast(toast)">Show Toast</button>
+
+  <div id="toast" #toast>
+    <div id="img"><img src="../../assets/images/cupboard.png" alt=""></div>
+    <div id="desc">A notification message..</div>
+  </div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+
+
+
+
+
+
+
+honner mi fitbti -->
